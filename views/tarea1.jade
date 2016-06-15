@@ -1,0 +1,53 @@
+﻿extend layout
+
+block content
+    div.page-header
+        h1 
+            span.glyphicon.glyphicon-list-alt
+            |    Lista de asistencias <small> tarea base datos </small>
+    include subjects
+    br
+    p
+    br
+    div.panel.panel-primary
+        div.panel-heading
+            h4= subject
+        div.panel-body
+            div.row
+                div.col-md-6
+                    ul.list-group
+                        li.list-group-item
+                            span.glyphicon.glyphicon-user
+                            |&nbsp;Profesor : 
+                            strong= teacher
+                        li.list-group-item 
+                            span.glyphicon.glyphicon-tags
+                            |&nbsp;Seccion : 
+                            strong= section
+                div.col-md-6
+                    li.list-group-item 
+                        span.glyphicon.glyphicon-barcode
+                        |&nbsp;Clave materia : 
+                        strong= subjectID
+                    li.list-group-item 
+                        span.glyphicon.glyphicon-calendar
+                        |&nbsp;Horario : 
+                        strong= schedule
+        table.table.table-hover.table-striped
+            tr
+                th 
+                    span.glyphicon.glyphicon-tag
+                    |&nbsp;ID
+                th 
+                    span.glyphicon.glyphicon-education
+                    |&nbsp;Nombre
+                th 
+                    span.glyphicon.glyphicon-check
+                    |&nbsp;Asistencias
+            - for (var i = 0 ; i < students.length ; i++) {
+                tr
+                    td= students[i].id
+                    td= students[i].name
+                    td
+                        span.badge=students[i].assists
+            - }
