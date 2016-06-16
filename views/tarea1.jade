@@ -16,27 +16,29 @@ block content
             div.row
                 div.col-md-6
                     ul.list-group
-                        li.list-group-item
-                            span.glyphicon.glyphicon-user
-                            |&nbsp;Profesor : 
-                            strong= teacher
+                        li.list-group-item 
+                            span.glyphicon.glyphicon-barcode
+                            |&nbsp;Clave materia : 
+                            strong= subjectID
                         li.list-group-item 
                             span.glyphicon.glyphicon-tags
                             |&nbsp;Seccion : 
                             strong= section
                 div.col-md-6
-                    li.list-group-item 
-                        span.glyphicon.glyphicon-barcode
-                        |&nbsp;Clave materia : 
-                        strong= subjectID
-                    li.list-group-item 
-                        span.glyphicon.glyphicon-calendar
-                        |&nbsp;Horario : 
-                        strong= schedule
-                        |&nbsp;&nbsp;
-                        span.glyphicon.glyphicon-home
-                        |&nbsp;Salon : 
-                        strong= room
+                    ul.list-group
+                        li.list-group-item
+                            span.glyphicon.glyphicon-user
+                            |&nbsp;Profesor : 
+                            strong= teacher
+                    
+                        li.list-group-item 
+                            span.glyphicon.glyphicon-calendar
+                            |&nbsp;Horario : 
+                            strong= schedule
+                            |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.glyphicon.glyphicon-home
+                            |&nbsp;Salon : 
+                            strong= room
         table.table.table-hover.table-striped
             tr
                 th 
@@ -51,7 +53,7 @@ block content
             - for (var i = 0 ; i < students.length ; i++) {
                 tr
                     td= students[i].id
-                    td= students[i].name
+                    td= students[i].nombre
                     td
-                        span.badge=students[i].assists
+                        span.badge=students[i].asistencias
             - }

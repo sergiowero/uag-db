@@ -1,4 +1,4 @@
 ﻿div.btn-group.btn-group-lg(role="group")
-    button.btn.btn-default(type="button") Materia 1
-    button.btn.btn-default(type="button") Materia 2
-    button.btn.btn-default(type="button") Materia 3
+    - for (var i = 0 ; i < subjects.length ; i++) {
+        a.btn.btn-default(type="button", href="/tarea1/#{subjects[i].clave}/#{subjects[i].seccion}" ) #{subjects[i].nombre}(#{subjects[i].seccion})
+    - }
