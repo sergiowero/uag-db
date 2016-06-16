@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var pg = require('pg');
+pg.defaults.ssl = true;
+var connectionString = process.env.DATABASE_URL;
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('tarea1', {
@@ -16,16 +20,71 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/:subject', function (req, res, next) {
+router.get('/:subject/:section', function (req, res, next) {
     var subject = req.params.subject
-    res.render('tarea1', {
-        subjectID: subject,
-        subject: subject,
-        teacher: 'none',
-        section: 'none',
-        schedule: 'none',
-        students : [
-        ]
+    var section = req.params.section
+    
+    var results = [];
+    var course = [];
+    
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function (err, client, done) {
+        // Handle connection errors
+        if (err) {
+            done();
+            console.log(connectionString);
+            console.log(err);
+            return res.status(500).json({ success: false, data: err });
+        }
+        
+        //*
+        var query = client.query(
+            "SELECT materia.clave, materia.nombre as nombre_materia, grupo.horario, grupo.salon, (SELECT nombre FROM profesor WHERE id = grupo.profesor_id) as nombre_profesor" + 
+            "    FROM grupo INNER JOIN materia ON grupo.materia_clave = materia.clave " + 
+            "    WHERE grupo.materia_clave=($1) AND grupo.seccion=($2)", [subject, section]);
+         
+        query.on('row', function (row) {
+            course.push(row);
+        });
+        
+        query.on('error', function (err) {
+            res.status(500).json({err:err});
+        });
+        
+        query.on('end', function (row) {
+            
+            console.log(course);
+
+            // SQL Query > Select Data
+            query = client.query(
+                "SELECT alumno.id, alumno.nombre, alumno_grupo.asistencias " + 
+            "    FROM alumno_grupo INNER JOIN alumno ON alumno_grupo.alumno_id = alumno.id " + 
+            "    WHERE alumno_grupo.materia_clave=($1) AND alumno_grupo.grupo_seccion=($2) " +
+            "    ORDER BY alumno.nombre ASC", [subject, section]);
+
+            // Stream results back one row at a time
+            query.on('row', function (row) {
+                results.push(row);
+            });
+            
+            // After all data is returned, close connection and return results
+            query.on('end', function () {
+                done();
+                
+                return res.render('tarea1', {
+                    subjectID: subject,
+                    subject: course[0].nombre_materia,
+                    teacher: course[0].nombre_profesor,
+                    section: section,
+                    schedule: course[0].horario,
+                    room: course[0].salon,
+                    students : results
+                });
+
+            });
+        });
+        //*/
+        
     });
 });
 

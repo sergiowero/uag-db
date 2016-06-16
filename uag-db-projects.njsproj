@@ -17,20 +17,22 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="routes\tarea1.js" />
     <Content Include="package.json" />
     <Compile Include="app.js" />
     <Compile Include="models\database.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="routes\users.js" />
     <Content Include="views\error.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
-    <Content Include="public\stylesheets\style.css" />
+    <Content Include="views\subjects.jade" />
+    <Content Include="views\tarea1.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin" />
     <Folder Include="models" />
     <Folder Include="public" />
+    <Folder Include="public\fonts\" />
     <Folder Include="public\images" />
     <Folder Include="public\javascripts" />
     <Folder Include="public\stylesheets" />

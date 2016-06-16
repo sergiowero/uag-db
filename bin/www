@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('DBStudents:server');
+var debug = require('debug')('uag-db:server');
 var http = require('http');
 
 /**
