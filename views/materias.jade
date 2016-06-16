@@ -1,0 +1,4 @@
+﻿div.list-group
+    - for (var i = 0 ; i < subjects.length ; i++) {
+        a.list-group-item(href="/wero1/#{subjects[i].clave}/#{subjects[i].seccion}" ) #{subjects[i].nombre} / #{subjects[i].seccion}
+    - }

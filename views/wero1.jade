@@ -1,0 +1,44 @@
+﻿extend layout
+
+block content
+    h1 Lista de asistencias
+    div.row
+        div.col-lg-3
+            include materias
+        div.col-lg-9
+            ul.list-group
+                li.list-group-item Materia : 
+                    h3
+                        strong= subject
+                li.list-group-item Profesor : 
+                    h3
+                        strong= teacher
+                li.list-group-item Clave materia : 
+                    strong= subjectID
+                li.list-group-item Seccion : 
+                    strong= section
+                li.list-group-item Horario : 
+                    strong= schedule
+                li.list-group-item Salon : 
+                    strong= room
+                br
+                p
+                br
+                table.table.table-bordered.table-condensed
+                    tr
+                        th 
+                            h4
+                                span.label.label-default ID
+                        th 
+                            h4
+                                span.label.label-default Nombre completo
+                        th 
+                            h4
+                                span.label.label-default Asistencias
+                    - for (var i = 0 ; i < students.length ; i++) {
+                        tr
+                            td= students[i].id
+                            td= students[i].nombre
+                            td
+                                span=students[i].asistencias
+                    - }
