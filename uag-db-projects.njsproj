@@ -18,15 +18,21 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="models\studentList.js" />
+    <Compile Include="routes\wero1.js" />
     <Compile Include="routes\tarea1.js" />
     <Content Include="package.json" />
     <Compile Include="app.js" />
     <Compile Include="models\database.js" />
     <Compile Include="routes\index.js" />
+    <Content Include="public\stylesheets\bootstrap-theme.min.css" />
+    <Content Include="public\stylesheets\bootstrap.min.css" />
+    <Content Include="public\stylesheets\cardinal.min.css" />
     <Content Include="views\error.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
+    <Content Include="views\materias.jade" />
     <Content Include="views\subjects.jade" />
+    <Content Include="views\wero1.jade" />
     <Content Include="views\tarea1.jade" />
   </ItemGroup>
   <ItemGroup>

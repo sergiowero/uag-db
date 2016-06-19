@@ -121,7 +121,7 @@ router.get('/:subject/:section', function (req, res, next) {
                     query = client.query(
                         "SELECT alumno.id, alumno.nombre, alumno_grupo.asistencias " + 
                         "    FROM alumno_grupo INNER JOIN alumno ON alumno_grupo.alumno_id = alumno.id " + 
-                        "    WHERE alumno_grupo.materia_clave=($1) AND alumno_grupo.grupo_seccion=($2) " +
+                        "    WHERE alumno_grupo.materia_clave=($1) AND alumno_grupo.grupo_seccion=($2) AND alumno.id > 7" +
                         "    ORDER BY alumno.nombre ASC", [subject, section]);
                     
                     // Stream results back one row at a time
