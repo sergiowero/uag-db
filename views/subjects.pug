@@ -1,0 +1,8 @@
+mixin alink(subject)
+  - attributes.href = "/tarea1/" + subject.clave + "/" + subject.seccion
+  a.btn.btn-default&attributes(attributes) #{subject.nombre}(#{subject.seccion})
+  
+div.btn-group.btn-group-lg(role="group")
+    - for (var i = 0 ; i < subjects.length ; i++) {
+        +alink(subjects[i])
+    - }
