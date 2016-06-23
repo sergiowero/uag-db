@@ -1,7 +1,7 @@
 require "./db_config"
 
 input = "alumnos.txt"
-input = ARGV[0] if ARGV.length > 1
+input = ARGV[0] if ARGV.length > 0
 gruposPorMateria = DBConfig::GRUPOS_POR_MATERIA
 alumnosPorGrupo = DBConfig::ALUMNOS_POR_GRUPO
 
