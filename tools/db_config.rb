@@ -15,7 +15,6 @@ class DBConfig
    ]
 
    SECCIONES = (1..10).to_a
-   ALUMNOS_FILE_NAME = 'alumnos.txt'
 
    HORARIOS = [
       'Jueves de 6 a 9 pm',
@@ -34,4 +33,7 @@ class DBConfig
       'ING 306',
       'ING 307'
    ]
+
+   GRUPOS_POR_MATERIA = 1
+   ALUMNOS_POR_GRUPO = 10
 end

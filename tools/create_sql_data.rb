@@ -1,13 +1,13 @@
 require "./db_config"
 
-inicio = 1
-inicio = ARGV[0].to_i if ARGV.length > 1
-gruposPorMateria = 3
-alumnosPorGrupo = 20
+input = "alumnos.txt"
+input = ARGV[0] if ARGV.length > 1
+gruposPorMateria = DBConfig::GRUPOS_POR_MATERIA
+alumnosPorGrupo = DBConfig::ALUMNOS_POR_GRUPO
 
 
 salida = File.new("data.sql", "w")
-lineas = IO.readlines("#{DBConfig::ALUMNOS_FILE_NAME}")
+lineas = IO.readlines("#{input}")
 
 materias = []
 profesores = []
@@ -46,7 +46,7 @@ end
 salida.write("\n")
 
 # Insertar alumnos
-id = inicio
+id = 1
 lineas.each { |nombre|
 	nombre.strip!
 	salida.write("INSERT INTO alumno (id, nombre) VALUES (#{id}, '#{nombre}');\n")
